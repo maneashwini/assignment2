@@ -39,8 +39,23 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
-
+ # def reverse . . . "your code"
+ #################################
+ # my reduce code
+ #################################
+def reduce([], value, _) 
+do value 
+end 
+def reduce([head | tail], value, func) 
+do reduce(tail, func.(head, value), func) 
+end 
+#######################
+#My reverse code
+#######################
+ def reverse(list),
+do: list 
+|> Enum.reduce([],fn(x,acclist) -> [x | acclist] end)
+  
   ##############################################################################
   # 4.2:  5 points #
   ##################
@@ -55,7 +70,11 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  #def min . . . "your code"
+  
+def min(list) do
+ reduce(list, 99, &(min(&1, &2)))
+end 
 
   ##############################################################################
   # 4.3: 10 points #
@@ -74,12 +93,14 @@ defmodule Ex04 do
   helps you do that. And, if you use that function, what does it return? That
   return value will be the thing you have to manipulate.
   """
-
-  def even_odd . . . "your code"
-
-
-
-
+  #My even_odd code
+def even_odd(list) do
+ {evens, odds} =list
+	|> Enum.reduce({[], []}, fn n, {evens, odds} ->
+    if Integer.is_even(n), do: {[n | evens], odds}, else: {evens, [n | odds]}
+    end)
+	{Enum.reverse(evens), Enum.reverse(odds)}
+  end 
   ###########################
   # IGNORE FROM HERE TO END #
   ###########################

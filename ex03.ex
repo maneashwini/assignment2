@@ -55,8 +55,12 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
-
+ # def odd_even . . . "your code"
+#defmodule Odd_even do
+import Integer
+def odd_even([]), do: []
+def odd_even([ head | tail ]), do: [ if is_even(head)== :true  do :even else  :odd end | odd_even(tail) ]
+#end
 
   ##############################################################################
   # 3.2:  5 points #
@@ -77,8 +81,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
-
+ # def list_contains . .. "your code"
+def list_contains([head|tail],element),
+do: Enum.member?([head|tail],element)
   ##############################################################################
   # 3.3:  5 points #
   ##################
@@ -101,8 +106,27 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal(list1,list2)  do 
+ if (length(list1) != length(list2)) do 
+   false
+   else 
+     sum_list(list1,list2)
+  end 
+end
 
+def sum_list(list,list, acc \\ 1)  
+
+  def sum_list([head | tail],[head1 | tail1 ], acc) do
+ 
+    sum_list(tail,tail1, if (head == head1 and acc == 1 ) do  1 else 0 end     )
+  end
+
+  def sum_list([],[], acc ) do
+        if acc == 0 do false 
+            else 
+                true 
+            end 
+    end
 
 
   ##############################################################################
@@ -149,7 +173,60 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  
+  def won(tuple) do
+   
+   case tuple do
+       # for X
+       # Vertical
+        {:x, _ ,_,  :x,_,_, :x,_,_} -> 
+        :x
+        {:_, :x ,_,  _,:x,_, _,:x,_} ->  
+        :x
+        {:_, _ ,:x,  _,_,:x, _,_,:x} ->  
+        :x
+        # Horizontal
+         {:x,:x,:x,  _, _ ,_,   _,_,_} ->
+        :x
+         {_, _ ,_,  :x,:x,:x, _,_,_} ->
+        :x
+         {  _, _ ,_,   _,_,_, :x,:x,:x} ->
+        :x
+        #cross
+        {:x, _ ,_,  _,:x,_, _,_,:x} ->
+        :x
+        {_,_,:x,  _,:x,_, :x, _ ,_  } ->
+        :x
+
+         # for O
+       # Vertical
+        {:o, _ ,_,  :o,_,_, :o,_,_} -> 
+        :o
+        {:_, :o ,_,  _,:o,_, _,:o,_} ->  
+        :o
+        {:_, _ ,:o,  _,_,:o, _,_,:o} ->  
+        :o
+        # Horizontal
+         {:o,:o,:o,  _, _ ,_,   _,_,_} ->
+        :o
+         {_, _ ,_,  :o,:o,:o, _,_,_} ->
+        :o
+         {  _, _ ,_,   _,_,_, :o,:o,:o} ->
+        :o
+        #cross
+        {:o, _ ,_,  _,:o,_, _,_,:o} ->
+        :o
+        {_,_,:o,  _,:o,_, :o, _ ,_  } ->
+        :o
+      _ ->
+        false
+    end
+
+   #[{a, b, c,d,e,f,g,h,i}] = tuple
+
+   # if(a==x) then  IO.puts("x is there")   end
+
+    end
 
 
   ###########################
